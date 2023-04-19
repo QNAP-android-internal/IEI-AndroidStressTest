@@ -25,4 +25,7 @@
     <dimen name="test_item_width">290dp</dimen>
     <dimen name="test_item_height">210dp</dimen>
 
+    <dimen name="summary_item_width">50dp</dimen>
+    <dimen name="summary_item_height">50dp</dimen>
+
 </resources>

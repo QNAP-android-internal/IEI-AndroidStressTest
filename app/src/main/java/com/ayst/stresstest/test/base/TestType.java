@@ -35,5 +35,9 @@ public enum TestType{
     TYPE_TIMING_BOOT_TEST,          // Timing boot Test
     TYPE_NETWORK_TEST,              // Network Test
     TYPE_CAMERA_TEST,               // Camera Test
-    TYPE_UVCCAMERA_TEST             // UVCCamera Test
+    TYPE_UVCCAMERA_TEST,            // UVCCamera Test
+    TYPE_USB_1_TEST,                // USB1 Test
+    TYPE_USB_2_TEST,                // USB2 Test
+    TYPE_COM_PORT_TEST,             // COM port Test
+    TYPE_DISK_TEST,                 // EMMC Test
 }

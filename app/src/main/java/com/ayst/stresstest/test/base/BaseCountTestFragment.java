@@ -42,11 +42,39 @@ public abstract class BaseCountTestFragment extends BaseTestFragment {
             mCountTv.setText(mCurrentCount + "/" + mTargetCount);
             mCountTv.setVisibility(View.VISIBLE);
 
+            if (mSummaryContainer != null && mSummaryContainer.getVisibility() == View.VISIBLE) {
+                mSummaryContainer.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            }
+
+            if (mSummaryCountTv != null) {
+                mSummaryCountTv.setText("PASS: " + (mCurrentCount - mFailureCount));
+                mSummaryCountTv.setVisibility(View.VISIBLE);
+            }
+
             mFailureCountTv.setText(mFailureCount + "/" + mCurrentCount);
             mFailureCountTv.setVisibility(View.VISIBLE);
+
+            if (mSummaryFailureCountTv != null) {
+                mSummaryFailureCountTv.setText("Failed: " + mFailureCount);
+                mSummaryFailureCountTv.setVisibility(View.VISIBLE);
+            }
+
+            if (mSummaryTotalCountTv != null) {
+                mSummaryTotalCountTv.setText(mCurrentCount + "/" + mTargetCount);
+                mSummaryTotalCountTv.setVisibility(View.VISIBLE);
+            }
         } else {
             mCountTv.setVisibility(View.GONE);
             mFailureCountTv.setVisibility(View.GONE);
+            if (mSummaryCountTv != null) {
+                mSummaryCountTv.setVisibility(View.GONE);
+            }
+            if (mSummaryFailureCountTv != null) {
+                mSummaryFailureCountTv.setVisibility(View.GONE);
+            }
+            if (mSummaryTotalCountTv != null) {
+                mSummaryTotalCountTv.setVisibility(View.GONE);
+            }
         }
 
         mProgressbar.setProgress(mCurrentCount > 0 ? (mCurrentCount * 100) / mTargetCount : 0);

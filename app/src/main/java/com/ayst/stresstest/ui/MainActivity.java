@@ -22,14 +22,17 @@ import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ayst.stresstest.R;
+import com.ayst.stresstest.test.disk.DiskTestFragment;
 import com.ayst.stresstest.test.airplanemode.AirplaneModeTestFragment;
 import com.ayst.stresstest.test.audio.AudioTestFragment;
 import com.ayst.stresstest.test.bluetooth.BluetoothTestFragment;
+import com.ayst.stresstest.test.comport.ComportTestFragment;
 import com.ayst.stresstest.test.cpu.CPUTestFragment;
 import com.ayst.stresstest.test.camera.CameraTestFragment;
 import com.ayst.stresstest.test.ddr.DDRTestFragment;
@@ -39,6 +42,8 @@ import com.ayst.stresstest.test.reboot.RebootTestFragment;
 import com.ayst.stresstest.test.recovery.RecoveryTestFragment;
 import com.ayst.stresstest.test.sleep.SleepTestFragment;
 import com.ayst.stresstest.test.timingboot.TimingBootTestFragment;
+import com.ayst.stresstest.test.usb.USB1TestFragment;
+import com.ayst.stresstest.test.usb.USB2TestFragment;
 import com.ayst.stresstest.test.video.VideoTestFragment;
 import com.ayst.stresstest.test.wifi.WifiTestFragment;
 import com.ayst.stresstest.test.base.BaseTestFragment;
@@ -65,8 +70,54 @@ public class MainActivity extends AppCompatActivity implements BaseTestFragment.
             R.id.container4, R.id.container5, R.id.container6,
             R.id.container7, R.id.container8, R.id.container9,
             R.id.container10, R.id.container11, R.id.container12,
-            R.id.container13, R.id.container14, R.id.container15};
+            R.id.container13, R.id.container14, R.id.container15,
+            R.id.container16, R.id.container17, R.id.container18,
+            R.id.container19};
     private ArrayList<TestType[]> mMutexTests = new ArrayList<>();
+
+    private int mSummaryContainerIds[] = {R.id.container_title1, R.id.container_title2, R.id.container_title3,
+            R.id.container_title4, R.id.container_title5, R.id.container_title6,
+            R.id.container_title7, R.id.container_title8, R.id.container_title9,
+            R.id.container_title10, R.id.container_title11, R.id.container_title12,
+            R.id.container_title13, R.id.container_title14, R.id.container_title15,
+            R.id.container_title16, R.id.container_title17, R.id.container_title18,
+            R.id.container_title19};
+    private int mSummaryTitleIds[] = {R.id.tv_title1, R.id.tv_title2, R.id.tv_title3,
+            R.id.tv_title4, R.id.tv_title5, R.id.tv_title6,
+            R.id.tv_title7, R.id.tv_title8, R.id.tv_title9,
+            R.id.tv_title10, R.id.tv_title11, R.id.tv_title12,
+            R.id.tv_title13, R.id.tv_title14, R.id.tv_title15,
+            R.id.tv_title16, R.id.tv_title17, R.id.tv_title18,
+            R.id.tv_title19};
+    private int mSummaryCountIds[] = {R.id.tv_count1, R.id.tv_count2, R.id.tv_count3,
+            R.id.tv_count4, R.id.tv_count5, R.id.tv_count6,
+            R.id.tv_count7, R.id.tv_count8, R.id.tv_count9,
+            R.id.tv_count10, R.id.tv_count11, R.id.tv_count12,
+            R.id.tv_count13, R.id.tv_count14, R.id.tv_count15,
+            R.id.tv_count16, R.id.tv_count17, R.id.tv_count18,
+            R.id.tv_count19};
+    private int mSummaryFailureCountIds[] = {R.id.tv_failure_count1, R.id.tv_failure_count2, R.id.tv_failure_count3,
+            R.id.tv_failure_count4, R.id.tv_failure_count5, R.id.tv_failure_count6,
+            R.id.tv_failure_count7, R.id.tv_failure_count8, R.id.tv_failure_count9,
+            R.id.tv_failure_count10, R.id.tv_failure_count11, R.id.tv_failure_count12,
+            R.id.tv_failure_count13, R.id.tv_failure_count14, R.id.tv_failure_count15,
+            R.id.tv_failure_count16, R.id.tv_failure_count17, R.id.tv_failure_count18,
+            R.id.tv_failure_count19};
+
+    private int mSummaryTotalCountIds[] = {R.id.tv_total_count1, R.id.tv_total_count2, R.id.tv_total_count3,
+            R.id.tv_total_count4, R.id.tv_total_count5, R.id.tv_total_count6,
+            R.id.tv_total_count7, R.id.tv_total_count8, R.id.tv_total_count9,
+            R.id.tv_total_count10, R.id.tv_total_count11, R.id.tv_total_count12,
+            R.id.tv_total_count13, R.id.tv_total_count14, R.id.tv_total_count15,
+            R.id.tv_total_count16, R.id.tv_total_count17, R.id.tv_total_count18,
+            R.id.tv_total_count19};
+
+    private boolean mIsNeededToTestItemIds[] = {true, true, false, true,
+            true, true, true, false,
+            false, false, false, false,
+            true, false, false, true,
+            true, true, true
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,9 +163,25 @@ public class MainActivity extends AppCompatActivity implements BaseTestFragment.
         mTestFragments.add(TestType.TYPE_NETWORK_TEST.ordinal(), new NetworkTestFragment());
         mTestFragments.add(TestType.TYPE_CAMERA_TEST.ordinal(), new CameraTestFragment());
         mTestFragments.add(TestType.TYPE_UVCCAMERA_TEST.ordinal(), new UVCCameraTestFragment());
+        mTestFragments.add(TestType.TYPE_USB_1_TEST.ordinal(), new USB1TestFragment());
+        mTestFragments.add(TestType.TYPE_USB_2_TEST.ordinal(), new USB2TestFragment());
+        mTestFragments.add(TestType.TYPE_COM_PORT_TEST.ordinal(), new ComportTestFragment());
+        mTestFragments.add(TestType.TYPE_DISK_TEST.ordinal(), new DiskTestFragment());
 
         for (int i = 0; i < mTestFragments.size(); i++) {
             mFragmentManager.beginTransaction().add(mContainerIds[i], mTestFragments.get(i)).commit();
+        }
+
+        for (int i = 0; i < mTestFragments.size(); i++) {
+            mTestFragments.get(i).setContainerTv(findViewById(mSummaryContainerIds[i]));
+            mTestFragments.get(i).setSummaryTitleTv(findViewById(mSummaryTitleIds[i]));
+            mTestFragments.get(i).setSummaryCountTv(findViewById(mSummaryCountIds[i]));
+            mTestFragments.get(i).setSummaryFailureCountTv(findViewById(mSummaryFailureCountIds[i]));
+            mTestFragments.get(i).setSummaryTotalCountTv(findViewById(mSummaryTotalCountIds[i]));
+        }
+
+        for (int i = 0; i < mTestFragments.size(); i++) {
+            findViewById(mSummaryContainerIds[i]).setVisibility(mIsNeededToTestItemIds[i] ? View.VISIBLE : View.GONE);
         }
 
         // 建立互斥表
@@ -133,6 +200,10 @@ public class MainActivity extends AppCompatActivity implements BaseTestFragment.
         mMutexTests.add(TestType.TYPE_NETWORK_TEST.ordinal(), createRebootMutex(new TestType[]{TestType.TYPE_AIRPLANE_MODE_TEST, TestType.TYPE_WIFI_TEST}));
         mMutexTests.add(TestType.TYPE_CAMERA_TEST.ordinal(), createRebootMutex(new TestType[]{TestType.TYPE_UVCCAMERA_TEST}));
         mMutexTests.add(TestType.TYPE_UVCCAMERA_TEST.ordinal(), createRebootMutex(new TestType[]{TestType.TYPE_CAMERA_TEST}));
+        mMutexTests.add(TestType.TYPE_USB_1_TEST.ordinal(), createRebootMutex(new TestType[]{TestType.TYPE_USB_1_TEST}));
+        mMutexTests.add(TestType.TYPE_USB_2_TEST.ordinal(), createRebootMutex(new TestType[]{TestType.TYPE_USB_2_TEST}));
+        mMutexTests.add(TestType.TYPE_COM_PORT_TEST.ordinal(), createRebootMutex(new TestType[]{TestType.TYPE_COM_PORT_TEST}));
+        mMutexTests.add(TestType.TYPE_DISK_TEST.ordinal(), createRebootMutex(new TestType[]{TestType.TYPE_DISK_TEST}));
     }
 
     @Override

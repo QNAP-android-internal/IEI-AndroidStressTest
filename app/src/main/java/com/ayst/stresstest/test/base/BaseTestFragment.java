@@ -69,6 +69,21 @@ public abstract class BaseTestFragment extends Fragment {
     // Failure count view
     protected TextView mFailureCountTv;
 
+    // Summary tested container view
+    protected RelativeLayout mSummaryContainer = null;
+
+    // Summary tested title view
+    protected TextView mSummaryTitleTv = null;
+
+    // Summary tested count view
+    protected TextView mSummaryCountTv = null;
+
+    // Summary tested failure count view
+    protected TextView mSummaryFailureCountTv = null;
+
+    // Summary tested total count view
+    protected TextView mSummaryTotalCountTv = null;
+
     // Title container
     protected FrameLayout mTitleContainer;
 
@@ -250,6 +265,26 @@ public abstract class BaseTestFragment extends Fragment {
         }
     }
 
+    public void setContainerTv(RelativeLayout view) {
+        mSummaryContainer = view;
+    }
+
+    public void setSummaryTitleTv(TextView view) {
+        mSummaryTitleTv = view;
+    }
+
+    public void setSummaryCountTv(TextView view) {
+        mSummaryCountTv = view;
+    }
+
+    public void setSummaryFailureCountTv(TextView view) {
+        mSummaryFailureCountTv = view;
+    }
+
+    public void setSummaryTotalCountTv(TextView view) {
+        mSummaryTotalCountTv = view;
+    }
+
     /**
      * To update the UI in the main thread
      */
@@ -284,6 +319,9 @@ public abstract class BaseTestFragment extends Fragment {
      */
     protected void setTitle(@StringRes int textId) {
         mTitleTv.setText(textId);
+        if (mSummaryTitleTv != null) {
+            mSummaryTitleTv.setText(textId);
+        }
     }
 
     /**

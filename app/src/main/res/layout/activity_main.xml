@@ -22,9 +22,363 @@
     android:fitsSystemWindows="true"
     tools:context="com.ayst.stresstest.ui.MainActivity">
 
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:alignContent="stretch"
+        app:alignItems="stretch"
+        android:id="@+id/fl_summary"
+        app:flexWrap="wrap">
+        <RelativeLayout
+            android:id="@+id/container_title1"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title1"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count1"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count1"
+                android:layout_toEndOf="@+id/tv_failure_count1"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count1"
+                style="@style/CustomTotalCountTextView" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title2"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title2"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count2"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count2"
+                android:layout_toEndOf="@+id/tv_failure_count2"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count2"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title3"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title3"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count3"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count3"
+                android:layout_toEndOf="@+id/tv_failure_count3"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count3"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title4"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title4"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count4"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count4"
+                android:layout_toEndOf="@+id/tv_failure_count4"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count4"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title5"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title5"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count5"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count5"
+                android:layout_toEndOf="@+id/tv_failure_count5"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count5"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title6"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title6"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count6"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count6"
+                android:layout_toEndOf="@+id/tv_failure_count6"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count6"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title7"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title7"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count7"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count7"
+                android:layout_toEndOf="@+id/tv_failure_count7"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count7"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title8"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title8"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count8"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count8"
+                android:layout_toEndOf="@+id/tv_failure_count8"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count8"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title9"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title9"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count9"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count9"
+                android:layout_toEndOf="@+id/tv_failure_count9"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count9"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title10"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title10"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count10"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count10"
+                android:layout_toEndOf="@+id/tv_failure_count10"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count10"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title11"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title11"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count11"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count11"
+                android:layout_toEndOf="@+id/tv_failure_count11"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count11"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title12"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title12"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count12"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count12"
+                android:layout_toEndOf="@+id/tv_failure_count12"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count12"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title13"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title13"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count13"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count13"
+                android:layout_toEndOf="@+id/tv_failure_count13"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count13"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title14"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title14"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count14"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count14"
+                android:layout_toEndOf="@+id/tv_failure_count14"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count14"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title15"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title15"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count15"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count15"
+                android:layout_toEndOf="@+id/tv_failure_count15"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count15"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title16"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title16"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count16"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count16"
+                android:layout_toEndOf="@+id/tv_failure_count16"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count16"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title17"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title17"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count17"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count17"
+                android:layout_toEndOf="@+id/tv_failure_count17"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count17"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title18"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title18"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count18"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count18"
+                android:layout_toEndOf="@+id/tv_failure_count18"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count18"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_title19"
+            style="@style/CustomSummaryContainer">
+            <TextView
+                android:id="@+id/tv_title19"
+                style="@style/CustomTitleTextView" />
+            <TextView
+                android:id="@+id/tv_failure_count19"
+                style="@style/CustomFailureCountTextView" />
+            <TextView
+                android:id="@+id/tv_count19"
+                android:layout_toEndOf="@+id/tv_failure_count19"
+                style="@style/CustomCountTextView" />
+            <TextView
+                android:id="@+id/tv_total_count19"
+                style="@style/CustomTotalCountTextView" />
+        </RelativeLayout>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fl_summary">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,6 +453,21 @@
                     android:id="@+id/container15"
                     style="@style/CardView.TestItem" />
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/container16"
+                    style="@style/CardView.TestItem" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/container17"
+                    style="@style/CardView.TestItem" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/container18"
+                    style="@style/CardView.TestItem" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/container19"
+                    style="@style/CardView.TestItem" />
             </com.google.android.flexbox.FlexboxLayout>
 
             <LinearLayout

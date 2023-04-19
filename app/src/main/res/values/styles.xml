@@ -27,7 +27,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    
+
     <style name="CardView.TestItem">
         <item name="android:layout_width">@dimen/test_item_width</item>
         <item name="android:layout_height">@dimen/test_item_height</item>
@@ -39,4 +39,57 @@
         <item name="cardElevation">5dp</item>
     </style>
 
+    <style name="CustomTextView">
+        <item name="android:layout_width">@dimen/summary_item_width</item>
+        <item name="android:layout_height">@dimen/summary_item_height</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">5dp</item>
+        <item name="cardBackgroundColor">@android:color/white</item>
+        <item name="cardCornerRadius">0dp</item>
+        <item name="cardElevation">5dp</item>
+    </style>
+
+    <style name="CustomSummaryContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="CustomTitleTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:text">Title</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_big</item>
+    </style>
+
+    <style name="CustomFailureCountTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">0</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">@dimen/text_big</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="CustomCountTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">0</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:textSize">@dimen/text_big</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="CustomTotalCountTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">0</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_big</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:visibility">gone</item>
+    </style>
 </resources>

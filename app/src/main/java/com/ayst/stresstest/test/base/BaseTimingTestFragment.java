@@ -66,11 +66,30 @@ public abstract class BaseTimingTestFragment extends BaseTestFragment {
             mCountTv.setText(formatTimeString());
             mCountTv.setVisibility(View.VISIBLE);
 
+            if (mSummaryContainer != null) {
+                mSummaryContainer.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            }
+
+            if (mSummaryCountTv != null) {
+                mSummaryCountTv.setText(formatTimeString());
+                mSummaryCountTv.setVisibility(View.VISIBLE);
+            }
             mFailureCountTv.setText(mFailureCount + "");
             mFailureCountTv.setVisibility(View.VISIBLE);
+
+            if (mSummaryFailureCountTv != null) {
+                mSummaryFailureCountTv.setText("Failed: " + mFailureCount);
+                mSummaryFailureCountTv.setVisibility(View.VISIBLE);
+            }
         } else {
             mCountTv.setVisibility(View.GONE);
+            if (mSummaryCountTv != null) {
+                mSummaryCountTv.setVisibility(View.GONE);
+            }
             mFailureCountTv.setVisibility(View.GONE);
+            if (mSummaryFailureCountTv != null) {
+                mSummaryFailureCountTv.setVisibility(View.GONE);
+            }
         }
 
         mProgressbar.setProgress(mCurrentTime > 0 ? (mCurrentTime * 100) / mTargetTime : 0);
@@ -113,6 +132,6 @@ public abstract class BaseTimingTestFragment extends BaseTestFragment {
     }
 
     private String formatTimeString() {
-        return time2String(mCurrentTime) + "/" + mTargetTime/3600 + "h";
+        return time2String(mCurrentTime) + "/" + mTargetTime / 3600 + "h";
     }
 }

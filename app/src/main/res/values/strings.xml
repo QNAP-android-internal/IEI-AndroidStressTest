@@ -49,6 +49,10 @@
     <string name="network_test">NETWORK TEST</string>
     <string name="camera_test">CAMERA TEST</string>
     <string name="uvccamera_test">UVC CAMERA TEST</string>
+    <string name="usb1_test">USB 1 Storage TEST</string>
+    <string name="usb2_test">USB 2 Storage TEST</string>
+    <string name="comport_test">COM PORT TEST</string>
+    <string name="disk_test">INTERNAL DISK TEST</string>
 
     <!--permission-->
     <string name="request_permission">Failed to get camera permissions, the test will not work.</string>
@@ -177,4 +181,16 @@
     <!--DDR Test-->
     <string name="ddr_test_intro">It tries to maximize randomized traffic to memory from processor and I/O, with the intent of creating a realistic high load situation in order to test the existing hardware devices in a computer.</string>
     <string name="ddr_test_install_error">The stressapptest installation is abnormal and the test cannot be run!</string>
+
+    <!--USB Test-->
+    <string name="usb_test_intro">The usb test will check file in chosen usb path.</string>
+    <string name="usb_test_video_file">Test path：</string>
+    <string name="usb_test_select_file_tips">Please select a file!</string>
+    <string name="usb_test_select_file">Select file</string>
+
+    <!--COM PORT Test-->
+    <string name="comport_test_intro">The com port test.</string>
+
+    <!--DISK Test-->
+    <string name="disk_test_intro">The disk test.</string>
 </resources>

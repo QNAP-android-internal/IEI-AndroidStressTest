@@ -43,12 +43,14 @@ public abstract class BaseCountTestWithTimerFragment extends BaseCountTestFragme
 
     /**
      * The actual execution of the test action, execute once
+     *
      * @return
      */
     protected abstract boolean testOnce();
 
     /**
      * Set the period of a test
+     *
      * @param period
      */
     protected void setPeriod(long period) {
