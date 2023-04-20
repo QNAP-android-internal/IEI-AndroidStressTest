@@ -16,26 +16,29 @@
 
 package com.ayst.stresstest.test.usb;
 
-import android.content.Intent;
+import static com.ayst.stresstest.test.usb.USBUriManager.USB2_FILE_SELECT_CODE;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import androidx.annotation.Nullable;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.ayst.stresstest.R;
-import com.ayst.stresstest.test.base.BaseTimingTestFragment;
 import com.ayst.stresstest.test.base.TestType;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
-public class USB2TestFragment extends BaseTimingTestFragment {
+public class USB2TestFragment extends USBTestFragment {
 
-    Unbinder unbinder;
-
-    private String mPath;
+    @BindView(R.id.tv_path)
+    TextView mPathTv;
+    @BindView(R.id.tv_error)
+    TextView mErrorTv;
+    @BindView(R.id.container_content)
+    LinearLayout mContentContainer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,42 +61,11 @@ public class USB2TestFragment extends BaseTimingTestFragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
-    @Override
-    protected void updateImpl() {
-        super.updateImpl();
-    }
-
-    @Override
     public void onStartClicked() {
-    }
-
-    @Override
-    public void start() {
-        super.start();
-    }
-
-    @Override
-    public void stop() {
-        super.stop();
-    }
-
-    @Override
-    public boolean isSupport() {
-        return true;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        if (!isRunning()) {
+            showFileChooser(USB2_FILE_SELECT_CODE);
+        } else {
+            super.onStartClicked();
+        }
     }
 }

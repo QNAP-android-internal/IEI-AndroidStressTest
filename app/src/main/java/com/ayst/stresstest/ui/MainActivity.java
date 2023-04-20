@@ -28,14 +28,16 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ayst.stresstest.R;
-import com.ayst.stresstest.test.disk.DiskTestFragment;
 import com.ayst.stresstest.test.airplanemode.AirplaneModeTestFragment;
 import com.ayst.stresstest.test.audio.AudioTestFragment;
+import com.ayst.stresstest.test.base.BaseTestFragment;
+import com.ayst.stresstest.test.base.TestType;
 import com.ayst.stresstest.test.bluetooth.BluetoothTestFragment;
+import com.ayst.stresstest.test.camera.CameraTestFragment;
 import com.ayst.stresstest.test.comport.ComportTestFragment;
 import com.ayst.stresstest.test.cpu.CPUTestFragment;
-import com.ayst.stresstest.test.camera.CameraTestFragment;
 import com.ayst.stresstest.test.ddr.DDRTestFragment;
+import com.ayst.stresstest.test.disk.DiskTestFragment;
 import com.ayst.stresstest.test.memory.MemoryTestFragment;
 import com.ayst.stresstest.test.network.NetworkTestFragment;
 import com.ayst.stresstest.test.reboot.RebootTestFragment;
@@ -44,11 +46,9 @@ import com.ayst.stresstest.test.sleep.SleepTestFragment;
 import com.ayst.stresstest.test.timingboot.TimingBootTestFragment;
 import com.ayst.stresstest.test.usb.USB1TestFragment;
 import com.ayst.stresstest.test.usb.USB2TestFragment;
+import com.ayst.stresstest.test.uvccamera.UVCCameraTestFragment;
 import com.ayst.stresstest.test.video.VideoTestFragment;
 import com.ayst.stresstest.test.wifi.WifiTestFragment;
-import com.ayst.stresstest.test.base.BaseTestFragment;
-import com.ayst.stresstest.test.base.TestType;
-import com.ayst.stresstest.test.uvccamera.UVCCameraTestFragment;
 import com.ayst.stresstest.util.AppUtils;
 
 import java.util.ArrayList;
@@ -75,28 +75,28 @@ public class MainActivity extends AppCompatActivity implements BaseTestFragment.
             R.id.container19};
     private ArrayList<TestType[]> mMutexTests = new ArrayList<>();
 
-    private int mSummaryContainerIds[] = {R.id.container_title1, R.id.container_title2, R.id.container_title3,
+    private final int[] mSummaryContainerIds = {R.id.container_title1, R.id.container_title2, R.id.container_title3,
             R.id.container_title4, R.id.container_title5, R.id.container_title6,
             R.id.container_title7, R.id.container_title8, R.id.container_title9,
             R.id.container_title10, R.id.container_title11, R.id.container_title12,
             R.id.container_title13, R.id.container_title14, R.id.container_title15,
             R.id.container_title16, R.id.container_title17, R.id.container_title18,
             R.id.container_title19};
-    private int mSummaryTitleIds[] = {R.id.tv_title1, R.id.tv_title2, R.id.tv_title3,
+    private final int[] mSummaryTitleIds = {R.id.tv_title1, R.id.tv_title2, R.id.tv_title3,
             R.id.tv_title4, R.id.tv_title5, R.id.tv_title6,
             R.id.tv_title7, R.id.tv_title8, R.id.tv_title9,
             R.id.tv_title10, R.id.tv_title11, R.id.tv_title12,
             R.id.tv_title13, R.id.tv_title14, R.id.tv_title15,
             R.id.tv_title16, R.id.tv_title17, R.id.tv_title18,
             R.id.tv_title19};
-    private int mSummaryCountIds[] = {R.id.tv_count1, R.id.tv_count2, R.id.tv_count3,
+    private final int[] mSummaryCountIds = {R.id.tv_count1, R.id.tv_count2, R.id.tv_count3,
             R.id.tv_count4, R.id.tv_count5, R.id.tv_count6,
             R.id.tv_count7, R.id.tv_count8, R.id.tv_count9,
             R.id.tv_count10, R.id.tv_count11, R.id.tv_count12,
             R.id.tv_count13, R.id.tv_count14, R.id.tv_count15,
             R.id.tv_count16, R.id.tv_count17, R.id.tv_count18,
             R.id.tv_count19};
-    private int mSummaryFailureCountIds[] = {R.id.tv_failure_count1, R.id.tv_failure_count2, R.id.tv_failure_count3,
+    private final int[] mSummaryFailureCountIds = {R.id.tv_failure_count1, R.id.tv_failure_count2, R.id.tv_failure_count3,
             R.id.tv_failure_count4, R.id.tv_failure_count5, R.id.tv_failure_count6,
             R.id.tv_failure_count7, R.id.tv_failure_count8, R.id.tv_failure_count9,
             R.id.tv_failure_count10, R.id.tv_failure_count11, R.id.tv_failure_count12,
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements BaseTestFragment.
             R.id.tv_failure_count16, R.id.tv_failure_count17, R.id.tv_failure_count18,
             R.id.tv_failure_count19};
 
-    private int mSummaryTotalCountIds[] = {R.id.tv_total_count1, R.id.tv_total_count2, R.id.tv_total_count3,
+    private final int[] mSummaryTotalCountIds = {R.id.tv_total_count1, R.id.tv_total_count2, R.id.tv_total_count3,
             R.id.tv_total_count4, R.id.tv_total_count5, R.id.tv_total_count6,
             R.id.tv_total_count7, R.id.tv_total_count8, R.id.tv_total_count9,
             R.id.tv_total_count10, R.id.tv_total_count11, R.id.tv_total_count12,
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements BaseTestFragment.
             R.id.tv_total_count16, R.id.tv_total_count17, R.id.tv_total_count18,
             R.id.tv_total_count19};
 
-    private boolean mIsNeededToTestItemIds[] = {true, true, false, true,
+    private final boolean[] mIsNeededToTestItemIds = {true, true, false, true,
             true, true, true, false,
             false, false, false, false,
             true, false, false, true,
@@ -200,10 +200,10 @@ public class MainActivity extends AppCompatActivity implements BaseTestFragment.
         mMutexTests.add(TestType.TYPE_NETWORK_TEST.ordinal(), createRebootMutex(new TestType[]{TestType.TYPE_AIRPLANE_MODE_TEST, TestType.TYPE_WIFI_TEST}));
         mMutexTests.add(TestType.TYPE_CAMERA_TEST.ordinal(), createRebootMutex(new TestType[]{TestType.TYPE_UVCCAMERA_TEST}));
         mMutexTests.add(TestType.TYPE_UVCCAMERA_TEST.ordinal(), createRebootMutex(new TestType[]{TestType.TYPE_CAMERA_TEST}));
-        mMutexTests.add(TestType.TYPE_USB_1_TEST.ordinal(), createRebootMutex(new TestType[]{TestType.TYPE_USB_1_TEST}));
-        mMutexTests.add(TestType.TYPE_USB_2_TEST.ordinal(), createRebootMutex(new TestType[]{TestType.TYPE_USB_2_TEST}));
-        mMutexTests.add(TestType.TYPE_COM_PORT_TEST.ordinal(), createRebootMutex(new TestType[]{TestType.TYPE_COM_PORT_TEST}));
-        mMutexTests.add(TestType.TYPE_DISK_TEST.ordinal(), createRebootMutex(new TestType[]{TestType.TYPE_DISK_TEST}));
+        mMutexTests.add(TestType.TYPE_USB_1_TEST.ordinal(), createRebootMutex(null));
+        mMutexTests.add(TestType.TYPE_USB_2_TEST.ordinal(), createRebootMutex(null));
+        mMutexTests.add(TestType.TYPE_COM_PORT_TEST.ordinal(), createRebootMutex(null));
+        mMutexTests.add(TestType.TYPE_DISK_TEST.ordinal(), createRebootMutex(null));
     }
 
     @Override
