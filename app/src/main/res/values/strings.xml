@@ -55,7 +55,7 @@
     <string name="request_permission">Failed to get camera permissions, the test will not work.</string>
 
     <!--MainActivity-->
-    <string name="app_intro">Version: %1$s\nAuthor: Bob Shen\nE-Mail: ayst.shen@foxmail.com\nWeChat: ayst_shen\nUrl: https://github.com/aystshen/AndroidStressTest</string>
+    <string name="app_intro">Version: %1$s\nAuthor: Bob Shen\nModifier: IEI Android-3 team\nE-Mail: wigcheng@ieiworld.com</string>
 
     <!--Bluetooth Test-->
     <string name="bt_test_intro">Bluetooth test is turned on, off, and scanned repeatedly, supporting classic and ble bluetooth.</string>
