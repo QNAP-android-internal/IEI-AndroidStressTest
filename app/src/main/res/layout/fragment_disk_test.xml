@@ -18,10 +18,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@drawable/ic_audio_bg"
-    tools:context="com.ayst.stresstest.test.disk.DiskTestFragment"
-    tools:layout_height="210dp"
-    tools:layout_width="290dp">
+    tools:context="com.ayst.stresstest.test.disk.DiskTestFragment">
 
     <LinearLayout
         android:id="@+id/container_content"
@@ -37,84 +34,6 @@
             android:text="@string/disk_test_intro"
             android:textColor="@color/black_70"
             tools:textSize="14sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/container_audio"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="invisible"
-        tools:visibility="gone">
-
-        <RelativeLayout
-            android:id="@+id/audio_rl_cover"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp">
-
-            <ImageView
-                android:id="@+id/iv_center"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_audio_cover_bg" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/audio_circle_gray_border"
-                android:src="@drawable/ic_audio_second_cover" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/iv_status"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:layout_centerInParent="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/audio_play_selector" />
-
-            <ImageView
-                android:id="@+id/iv_pre"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="25dp"
-                android:layout_toStartOf="@id/iv_status"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_audio_pre_pressed" />
-
-
-            <ProgressBar
-                android:id="@+id/pb_load"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_centerInParent="true"
-                android:indeterminateBehavior="repeat"
-                android:indeterminateDrawable="@drawable/audio_play_loading"
-                android:indeterminateOnly="true"
-                android:padding="5dp"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/iv_next"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="25dp"
-                android:layout_toEndOf="@id/iv_status"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_audio_next_pressed" />
-        </RelativeLayout>
-
     </LinearLayout>
 
 </FrameLayout>

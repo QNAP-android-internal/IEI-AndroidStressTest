@@ -16,8 +16,9 @@
 
 package com.ayst.stresstest.test.disk;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,17 +26,17 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 
 import com.ayst.stresstest.R;
-import com.ayst.stresstest.test.base.BaseTimingTestFragment;
+import com.ayst.stresstest.test.base.BaseCountTestWithTimerFragment;
 import com.ayst.stresstest.test.base.TestType;
+
+import java.io.File;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class DiskTestFragment extends BaseTimingTestFragment {
+public class DiskTestFragment extends BaseCountTestWithTimerFragment {
 
     Unbinder unbinder;
-
-    private String mPath;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,31 +70,20 @@ public class DiskTestFragment extends BaseTimingTestFragment {
     }
 
     @Override
-    protected void updateImpl() {
-        super.updateImpl();
-    }
-
-    @Override
-    public void onStartClicked() {
-    }
-
-    @Override
-    public void start() {
-        super.start();
-    }
-
-    @Override
-    public void stop() {
-        super.stop();
+    protected boolean testOnce() {
+        String sdcard = Environment.getExternalStorageDirectory().getAbsolutePath();
+        // Check path: /mnt/user/0/emulated/0/Download
+        if (new File(sdcard + "/Download/").exists()) {
+            Log.d(TAG, "Download directory exist ");
+            return true;
+        } else {
+            Log.d(TAG, "Download directory not exist ");
+        }
+        return false;
     }
 
     @Override
     public boolean isSupport() {
         return true;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
     }
 }
