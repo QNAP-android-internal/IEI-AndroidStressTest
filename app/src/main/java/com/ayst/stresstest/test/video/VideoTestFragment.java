@@ -16,12 +16,9 @@
 
 package com.ayst.stresstest.test.video;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,13 +34,12 @@ import androidx.annotation.Nullable;
 import com.ayst.stresstest.R;
 import com.ayst.stresstest.test.base.BaseTimingTestFragment;
 import com.ayst.stresstest.test.base.TestType;
-import com.ayst.stresstest.util.FileUtils;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
-import static android.app.Activity.RESULT_OK;
 
 public class VideoTestFragment extends BaseTimingTestFragment {
 
@@ -64,6 +60,8 @@ public class VideoTestFragment extends BaseTimingTestFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String sdcard = Environment.getExternalStorageDirectory().getAbsolutePath();
+        mPath = sdcard + "/Download/bbb_full.ffmpeg.720x480.mp4.libx264_500kbps_25fps.libfaac_stereo_128kbps_44100Hz.mp4";
     }
 
     @Override
@@ -115,11 +113,11 @@ public class VideoTestFragment extends BaseTimingTestFragment {
 
     @Override
     public void onStartClicked() {
-        if (!isRunning()) {
-            showFileChooser();
-        } else {
-            super.onStartClicked();
+        if (!isFileExist()) {
+            showToast(R.string.video_test_null_file);
+            return;
         }
+        super.onStartClicked();
     }
 
     @Override
@@ -187,40 +185,14 @@ public class VideoTestFragment extends BaseTimingTestFragment {
         mVideoView.stopPlayback();
     }
 
-    private static final int FILE_SELECT_CODE = 0;
-
-    private void showFileChooser() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        try {
-            startActivityForResult(Intent.createChooser(intent, getString(R.string.video_test_select_file)), FILE_SELECT_CODE);
-        } catch (ActivityNotFoundException ex) {
-            // Potentially direct the user to the Market with a Dialog
-            showToast("Please install a File Manager.");
+    private boolean isFileExist() {
+        Log.d(TAG, "path: " + mPath);
+        if (new File(mPath).exists()) {
+            Log.d(TAG, "File exist ");
+            return true;
+        } else {
+            Log.d(TAG, "File not exist ");
         }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case FILE_SELECT_CODE:
-                if (resultCode == RESULT_OK) {
-                    // Get the Uri of the selected file
-                    Uri uri = data.getData();
-                    Log.d(TAG, "onActivityResult, File Uri: " + uri.toString());
-                    // Get the path
-                    mPath = FileUtils.getFilePathByUri(mActivity, uri);
-                    Log.d(TAG, "onActivityResult, File Path: " + mPath);
-
-                    if (!TextUtils.isEmpty(mPath)) {
-                        super.onStartClicked();
-                    } else {
-                        showToast(R.string.video_test_invalid_file);
-                    }
-                }
-                break;
-        }
-        super.onActivityResult(requestCode, resultCode, data);
+        return false;
     }
 }
