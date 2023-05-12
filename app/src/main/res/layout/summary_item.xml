@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_title"
+    style="@style/CustomSummaryContainer">
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/CustomTitleTextView" />
+    <TextView
+        android:id="@+id/tv_failure_count"
+        style="@style/CustomFailureCountTextView" />
+    <TextView
+        android:id="@+id/tv_count"
+        android:layout_toEndOf="@+id/tv_failure_count"
+        style="@style/CustomCountTextView" />
+    <TextView
+        android:id="@+id/tv_total_count"
+        style="@style/CustomTotalCountTextView" />
+
+</RelativeLayout>

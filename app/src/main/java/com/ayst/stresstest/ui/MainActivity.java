@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements BaseTestFragment.
     private FragmentManager mFragmentManager;
 
     private ArrayList<BaseTestFragment> mTestFragments = new ArrayList<>();
+    private ArrayList<TestType[]> mMutexTests = new ArrayList<>();
     private int mContainerIds[] = {R.id.container1, R.id.container2, R.id.container3,
             R.id.container4, R.id.container5, R.id.container6,
             R.id.container7, R.id.container8, R.id.container9,
@@ -73,8 +74,7 @@ public class MainActivity extends AppCompatActivity implements BaseTestFragment.
             R.id.container13, R.id.container14, R.id.container15,
             R.id.container16, R.id.container17, R.id.container18,
             R.id.container19};
-    private ArrayList<TestType[]> mMutexTests = new ArrayList<>();
-
+    
     private final int[] mSummaryContainerIds = {R.id.container_title1, R.id.container_title2, R.id.container_title3,
             R.id.container_title4, R.id.container_title5, R.id.container_title6,
             R.id.container_title7, R.id.container_title8, R.id.container_title9,
@@ -82,35 +82,6 @@ public class MainActivity extends AppCompatActivity implements BaseTestFragment.
             R.id.container_title13, R.id.container_title14, R.id.container_title15,
             R.id.container_title16, R.id.container_title17, R.id.container_title18,
             R.id.container_title19};
-    private final int[] mSummaryTitleIds = {R.id.tv_title1, R.id.tv_title2, R.id.tv_title3,
-            R.id.tv_title4, R.id.tv_title5, R.id.tv_title6,
-            R.id.tv_title7, R.id.tv_title8, R.id.tv_title9,
-            R.id.tv_title10, R.id.tv_title11, R.id.tv_title12,
-            R.id.tv_title13, R.id.tv_title14, R.id.tv_title15,
-            R.id.tv_title16, R.id.tv_title17, R.id.tv_title18,
-            R.id.tv_title19};
-    private final int[] mSummaryCountIds = {R.id.tv_count1, R.id.tv_count2, R.id.tv_count3,
-            R.id.tv_count4, R.id.tv_count5, R.id.tv_count6,
-            R.id.tv_count7, R.id.tv_count8, R.id.tv_count9,
-            R.id.tv_count10, R.id.tv_count11, R.id.tv_count12,
-            R.id.tv_count13, R.id.tv_count14, R.id.tv_count15,
-            R.id.tv_count16, R.id.tv_count17, R.id.tv_count18,
-            R.id.tv_count19};
-    private final int[] mSummaryFailureCountIds = {R.id.tv_failure_count1, R.id.tv_failure_count2, R.id.tv_failure_count3,
-            R.id.tv_failure_count4, R.id.tv_failure_count5, R.id.tv_failure_count6,
-            R.id.tv_failure_count7, R.id.tv_failure_count8, R.id.tv_failure_count9,
-            R.id.tv_failure_count10, R.id.tv_failure_count11, R.id.tv_failure_count12,
-            R.id.tv_failure_count13, R.id.tv_failure_count14, R.id.tv_failure_count15,
-            R.id.tv_failure_count16, R.id.tv_failure_count17, R.id.tv_failure_count18,
-            R.id.tv_failure_count19};
-
-    private final int[] mSummaryTotalCountIds = {R.id.tv_total_count1, R.id.tv_total_count2, R.id.tv_total_count3,
-            R.id.tv_total_count4, R.id.tv_total_count5, R.id.tv_total_count6,
-            R.id.tv_total_count7, R.id.tv_total_count8, R.id.tv_total_count9,
-            R.id.tv_total_count10, R.id.tv_total_count11, R.id.tv_total_count12,
-            R.id.tv_total_count13, R.id.tv_total_count14, R.id.tv_total_count15,
-            R.id.tv_total_count16, R.id.tv_total_count17, R.id.tv_total_count18,
-            R.id.tv_total_count19};
 
     private final boolean[] mIsNeededToTestItemIds = {true, true, false, true,
             true, true, true, false,
@@ -174,10 +145,10 @@ public class MainActivity extends AppCompatActivity implements BaseTestFragment.
 
         for (int i = 0; i < mTestFragments.size(); i++) {
             mTestFragments.get(i).setContainerTv(findViewById(mSummaryContainerIds[i]));
-            mTestFragments.get(i).setSummaryTitleTv(findViewById(mSummaryTitleIds[i]));
-            mTestFragments.get(i).setSummaryCountTv(findViewById(mSummaryCountIds[i]));
-            mTestFragments.get(i).setSummaryFailureCountTv(findViewById(mSummaryFailureCountIds[i]));
-            mTestFragments.get(i).setSummaryTotalCountTv(findViewById(mSummaryTotalCountIds[i]));
+            mTestFragments.get(i).setSummaryTitleTv(findViewById(mSummaryContainerIds[i]).findViewById(R.id.tv_title));
+            mTestFragments.get(i).setSummaryCountTv(findViewById(mSummaryContainerIds[i]).findViewById(R.id.tv_count));
+            mTestFragments.get(i).setSummaryFailureCountTv(findViewById(mSummaryContainerIds[i]).findViewById(R.id.tv_failure_count));
+            mTestFragments.get(i).setSummaryTotalCountTv(findViewById(mSummaryContainerIds[i]).findViewById(R.id.tv_total_count));
         }
 
         for (int i = 0; i < mTestFragments.size(); i++) {
