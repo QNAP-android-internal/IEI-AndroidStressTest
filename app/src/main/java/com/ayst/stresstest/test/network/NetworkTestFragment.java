@@ -88,6 +88,6 @@ public class NetworkTestFragment extends BaseCountTestWithTimerFragment {
 
     @Override
     protected boolean testOnce() {
-        return NetworkUtils.isAvailableByDns(mTestUrl);
+        return NetworkUtils.isAvailableByPing(mTestUrl);
     }
 }
