@@ -39,33 +39,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <CheckBox
-                    android:id="@+id/chbox_check_wifi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/reboot_test_check_wifi" />
-
-                <CheckBox
-                    android:id="@+id/chbox_sdcard"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/reboot_test_check_sdcard" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
                 android:layout_marginStart="5dp"
                 android:orientation="vertical">
 
                 <CheckBox
-                    android:id="@+id/chbox_capture"
+                    android:id="@+id/chbox_poweroff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/reboot_test_capture" />
+                    android:text="Test Power-Off" />
 
             </LinearLayout>
         </LinearLayout>
@@ -96,13 +77,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <com.ayst.stresstest.test.camera.AutoFitTextureView
-        android:id="@+id/texture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/tv_countdown"

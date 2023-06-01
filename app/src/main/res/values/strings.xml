@@ -132,7 +132,7 @@
     <string name="reboot_test_count_down">seconds, reboot</string>
     <string name="reboot_test_insert_sdcard_tips">Please insert the sdcard!</string>
     <string name="reboot_test_connect_wifi_tips">Please connect to WiFi!</string>
-    <string name="reboot_test_reboot_tips">Are you want to restart the test? After confirming, the system will be restarted after %d seconds.</string>
+    <string name="reboot_test_reboot_tips">Are you want to restart the test? After confirming, the system will be restarted after %d seconds. If you select power-off option, please turn off the device manually.</string>
     <string name="reboot_test_delay_empty">Please set the delay!</string>
     <string name="reboot_test_delay_invalid">Delay not less than %d s!</string>
 

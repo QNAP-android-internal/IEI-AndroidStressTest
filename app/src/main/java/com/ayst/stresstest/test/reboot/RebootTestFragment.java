@@ -22,7 +22,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Message;
 import android.os.PowerManager;
@@ -56,36 +55,25 @@ public class RebootTestFragment extends BaseCountTestFragment {
     private static final String SP_REBOOT_FAIL_COUNT = "reboot_fail_count";
     private static final String SP_REBOOT_MAX = "reboot_max";
     private static final String SP_REBOOT_DELAY = "reboot_delay";
-    private static final String SP_REBOOT_SD = "reboot_sd";
-    private static final String SP_REBOOT_WIFI = "reboot_wifi";
-    private static final String SP_REBOOT_CAPTURE = "reboot_capture";
+    private static final String SP_REBOOT_POWEROFF = "reboot_capture";
 
     private final static int MSG_REBOOT_COUNTDOWN = 1001;
     private final static int DELAY_DEFAULT = 10; // Default 10s
 
-    @BindView(R.id.chbox_check_wifi)
-    CheckBox mWiFiCheckbox;
-    @BindView(R.id.chbox_sdcard)
-    CheckBox mSdcardCheckbox;
     @BindView(R.id.edt_delay)
     EditText mDelayEdt;
     @BindView(R.id.tv_countdown)
     TextView mCountdownTv;
     Unbinder unbinder;
-    @BindView(R.id.chbox_capture)
-    CheckBox mCaptureCheckbox;
-    @BindView(R.id.texture)
-    AutoFitTextureView mTextureView;
+    @BindView(R.id.chbox_poweroff)
+    CheckBox mPoweroffCheckbox;
 
     private int mDelayTime;
     private int mCountDownTime;
     private int mFailCnt = 0;
-    private boolean isCheckSD = false;
-    private boolean isCheckWifi = false;
-    private boolean isCapture = false;
+    private boolean isPoweroff = false;
 
     private ConnectivityManager mConnManager;
-    private WifiManager mWifiManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,11 +84,8 @@ public class RebootTestFragment extends BaseCountTestFragment {
         mFailCnt = SPUtils.getInstance(mActivity).getData(SP_REBOOT_FAIL_COUNT, 0);
         mTargetCount = SPUtils.getInstance(mActivity).getData(SP_REBOOT_MAX, 0);
         mDelayTime = SPUtils.getInstance(mActivity).getData(SP_REBOOT_DELAY, DELAY_DEFAULT);
-        isCheckSD = SPUtils.getInstance(mActivity).getData(SP_REBOOT_SD, false);
-        isCheckWifi = SPUtils.getInstance(mActivity).getData(SP_REBOOT_WIFI, false);
-        isCapture = SPUtils.getInstance(mActivity).getData(SP_REBOOT_CAPTURE, false);
+        isPoweroff = SPUtils.getInstance(mActivity).getData(SP_REBOOT_POWEROFF, false);
 
-        mWifiManager = (WifiManager) mActivity.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
     }
 
     @Override
@@ -126,30 +111,16 @@ public class RebootTestFragment extends BaseCountTestFragment {
             markFailure(mFailCnt);
         }
 
-        mWiFiCheckbox.setChecked(isCheckWifi);
-        mSdcardCheckbox.setChecked(isCheckSD);
-        mCaptureCheckbox.setChecked(isCapture);
+        mPoweroffCheckbox.setChecked(isPoweroff);
         mDelayEdt.setText(mDelayTime + "");
 
-        mSdcardCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mPoweroffCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (!AppUtils.isExternalStorageMounted()) {
                         showToast(R.string.reboot_test_insert_sdcard_tips);
                         buttonView.setChecked(false);
-                    }
-                }
-            }
-        });
-
-        mWiFiCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton view, boolean isChecked) {
-                if (isChecked) {
-                    if (!mWifiManager.isWifiEnabled() || !isWifiConnected(mActivity)) {
-                        showToast(R.string.wifi_test_connect_tips);
-                        view.setChecked(false);
                     }
                 }
             }
@@ -172,57 +143,6 @@ public class RebootTestFragment extends BaseCountTestFragment {
     @SuppressLint("CheckResult")
     private void check() {
         if (isRunning()) {
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (isCheckSD) {
-                        if (!AppUtils.isExternalStorageMounted()) {
-                            Log.e(TAG, "check, check the sdcard fail.");
-                            markFailure();
-                            return;
-                        }
-                    }
-
-                    if (isCheckWifi) {
-                        if (!isWifiConnected(mActivity)) {
-                            Log.e(TAG, "check, check the wifi fail.");
-                            markFailure();
-                        }
-                    }
-
-                    if (isCapture) {
-                        Log.i(TAG, "check, take picture");
-                        CameraPresenter camera = new CameraPresenter(mActivity, mTextureView);
-                        try {
-                            camera.init();
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        showCameraSurfaceView(true);
-
-                                        camera.openCamera();
-                                        Thread.sleep(3000);
-
-                                        camera.takePicture();
-                                        Thread.sleep(3000);
-
-                                        camera.closeCamera();
-                                        camera.destroy();
-                                        showCameraSurfaceView(false);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }).start();
-                        } catch (Exception e) {
-                            Log.e(TAG, "check, take picture fail, " + e.getMessage());
-                            camera.destroy();
-                        }
-                    }
-                }
-            }, (mDelayTime - 8) * 1000);
-
             if (next()) {
                 mCountDownTime = mDelayTime;
                 mHandler.sendEmptyMessage(MSG_REBOOT_COUNTDOWN);
@@ -258,9 +178,7 @@ public class RebootTestFragment extends BaseCountTestFragment {
                             @Override
                             public void onClick(DialogInterface dialog,
                                                 int which) {
-                                isCheckWifi = mWiFiCheckbox.isChecked();
-                                isCheckSD = mSdcardCheckbox.isChecked();
-                                isCapture = mCaptureCheckbox.isChecked();
+                                isPoweroff = mPoweroffCheckbox.isChecked();
                                 mCountDownTime = mDelayTime;
                                 mHandler.sendEmptyMessage(MSG_REBOOT_COUNTDOWN);
                             }
@@ -310,7 +228,8 @@ public class RebootTestFragment extends BaseCountTestFragment {
                 } else {
                     mCountdownTv.setVisibility(View.GONE);
                     saveState();
-                    reboot();
+                    if(!isPoweroff)
+                        reboot();
                 }
 
                 break;
@@ -329,9 +248,7 @@ public class RebootTestFragment extends BaseCountTestFragment {
         SPUtils.getInstance(mActivity).saveData(SP_REBOOT_FAIL_COUNT, mFailureCount);
         SPUtils.getInstance(mActivity).saveData(SP_REBOOT_MAX, mTargetCount);
         SPUtils.getInstance(mActivity).saveData(SP_REBOOT_DELAY, mDelayTime);
-        SPUtils.getInstance(mActivity).saveData(SP_REBOOT_SD, isCheckSD);
-        SPUtils.getInstance(mActivity).saveData(SP_REBOOT_WIFI, isCheckWifi);
-        SPUtils.getInstance(mActivity).saveData(SP_REBOOT_CAPTURE, isCapture);
+        SPUtils.getInstance(mActivity).saveData(SP_REBOOT_POWEROFF, isPoweroff);
     }
 
     private void cleanState() {
@@ -340,27 +257,6 @@ public class RebootTestFragment extends BaseCountTestFragment {
         SPUtils.getInstance(mActivity).saveData(SP_REBOOT_FAIL_COUNT, 0);
         SPUtils.getInstance(mActivity).saveData(SP_REBOOT_MAX, 0);
         SPUtils.getInstance(mActivity).saveData(SP_REBOOT_DELAY, DELAY_DEFAULT);
-        SPUtils.getInstance(mActivity).saveData(SP_REBOOT_SD, false);
-        SPUtils.getInstance(mActivity).saveData(SP_REBOOT_WIFI, false);
-        SPUtils.getInstance(mActivity).saveData(SP_REBOOT_CAPTURE, false);
-    }
-
-    public boolean isWifiConnected(Context context) {
-        if (null == mConnManager) {
-            mConnManager = (ConnectivityManager) context.
-                    getSystemService(Context.CONNECTIVITY_SERVICE);
-        }
-        NetworkInfo wifiNetworkInfo = mConnManager.
-                getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        return ((wifiNetworkInfo != null) && wifiNetworkInfo.isConnected());
-    }
-
-    private void showCameraSurfaceView(final boolean show) {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                mTextureView.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
-            }
-        });
+        SPUtils.getInstance(mActivity).saveData(SP_REBOOT_POWEROFF, false);
     }
 }
