@@ -107,7 +107,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/container10"
-                    style="@style/CardView.TestItem" />
+                    style="@style/CardView.TestItem"
+                    android:visibility="gone" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/container11"
