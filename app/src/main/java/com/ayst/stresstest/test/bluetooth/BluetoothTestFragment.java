@@ -147,7 +147,22 @@ public class BluetoothTestFragment extends BaseCountTestWithTimerFragment {
     @Override
     protected boolean testOnce() {
         if (!mBluetoothAdapter.isEnabled()) {
-            return mBluetoothAdapter.enable();
+            mBluetoothAdapter.enable();
+            // make a delay 3 secs function after enable bluetooth
+            try
+            {
+                Thread.sleep(3000);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
+
+            if(!mBluetoothAdapter.isEnabled()) {
+                return false;
+            } else {
+                return true;
+            }
         } else {
             if (isCheckConnect) {
                 if (mData.isEmpty()) {
